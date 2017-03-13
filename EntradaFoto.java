@@ -45,24 +45,36 @@ public class EntradaFoto
         return momentoPublicacion;
     }
 
-    public String toString(){
-        String cadenaADevolver = null;
-        cadenaADevolver = "Autor: " + usuario + ". Titulo: " + titulo + " " + urlImagen + " " + cantidadMeGusta + " Me Gusta.";
-        if (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) <= 59) {
-            cadenaADevolver = cadenaADevolver + " Tiempo transcurrido: " + 
-            momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS)
-            + " segundos.";
+      public String toString()
+    {
+        String cadenaADevolver = "";
+        
+        cadenaADevolver += "Usuario: " + usuario + "\n";
+        cadenaADevolver += titulo + "\n";
+        cadenaADevolver += urlImagen + "\n";
+        cadenaADevolver += cantidadMeGusta + " me gusta";
+        
+        long segundosQueHanPasadoDesdeCreacion = momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
+        long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
+        
+        cadenaADevolver += "Hace ";
+        if (minutosQueHanPasadoDesdeCreacion > 0) {
+            cadenaADevolver += minutosQueHanPasadoDesdeCreacion + " minutos ";
+        }
+        cadenaADevolver += segundosResiduales + " segundos.\n";       
+        
+        if (comentarios.isEmpty()) {
+            cadenaADevolver += "La entrada no tiene comentarios.";
         }
         else {
-            cadenaADevolver = cadenaADevolver + " Tiempo transcurrido: " + 
-            momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.MINUTES)+ " minutos, " + 
-            (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) - 60)+ " segundos.";
-        }
-        if (comentarios.isEmpty()) {
-            cadenaADevolver = cadenaADevolver + " - No contiene comentarios";
-        }
-        System.out.println(cadenaADevolver);
-
+            //Se recopilan los comentarios
+            cadenaADevolver += "Comentarios:\n";
+            for (String comentario : comentarios) {
+                cadenaADevolver += comentario + "\n";
+            }
+        }   
+        
         return cadenaADevolver;
     }
 }

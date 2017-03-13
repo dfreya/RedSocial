@@ -38,23 +38,33 @@ public class EntradaTexto
         return momentoPublicacion;
     }
 
+    
     public String toString(){
-        String cadenaADevolver = null;
-        cadenaADevolver = "Autor: " + usuario + ". Mensaje: " + mensaje + " " +cantidadMeGusta + " Me Gusta.";
-        if (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) <= 59) {
-            cadenaADevolver = cadenaADevolver + " Tiempo transcurrido: " + 
-            momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS)
-            + " segundos.";
+        String cadenaDevolver="";
+        cadenaDevolver+= "Usuario: " + usuario +"\n";
+        cadenaDevolver+= mensaje +"\n";
+        cadenaDevolver+= cantidadMeGusta +" me gusta.";
+        
+        long segundosDeLaCreacion= momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long minutosDePublicaion= segundosDeLaCreacion/60;
+        long segundosDePublicacion=segundosDeLaCreacion % 60;
+        
+        cadenaDevolver+= "Hace ";
+        if(minutosDePublicaion>0){
+            cadenaDevolver+= minutosDePublicaion+ " minutos ";
         }
-        else {
-            cadenaADevolver = cadenaADevolver + " Tiempo transcurrido: " + 
-            momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.MINUTES)+ " minutos, " + 
-            (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) - 60)+ " segundos.";
-        }
+        cadenaDevolver+= segundosDePublicacion +" segundos.\n";
+        
         if (comentarios.isEmpty()) {
-            cadenaADevolver = cadenaADevolver + " - No contiene comentarios";
+            cadenaDevolver = cadenaDevolver + " - No contiene comentarios";
         }
-        System.out.println(cadenaADevolver);
-        return cadenaADevolver;
+        else{
+            for(String comentario: comentarios){
+                cadenaDevolver+= comentario +"\n";
+            }
+        }
+        
+        System.out.println(cadenaDevolver);
+        return cadenaDevolver;
     }
 }

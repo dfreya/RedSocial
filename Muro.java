@@ -24,16 +24,26 @@ public class Muro
         fotos.add(entradaFoto);
     }
 
-    public void toSTring(){
-        if (!mensajes.isEmpty()) {
-            for (EntradaTexto entradaTextoActual : mensajes) {
-                entradaTextoActual.toString();
-            }
+    public String toString()
+    {
+        String cadenaADevolver = "";
+        
+        for (EntradaTexto entrada : mensajes)
+        {
+            cadenaADevolver += entrada + "\n";
         }
-        if (!fotos.isEmpty()) {
-            for (EntradaFoto entradaFotoActual : fotos) {
-                entradaFotoActual.toString();
-            }
-        }
+
+        
+        for (EntradaFoto entrada : fotos)
+        {
+            cadenaADevolver += entrada + "\n";
+        }        
+        
+        return cadenaADevolver;
+    }
+    
+    public void mostrar()
+    {
+        System.out.println(this);
     }
 }
