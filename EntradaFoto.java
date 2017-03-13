@@ -20,6 +20,9 @@ public class EntradaFoto
         usuario= autor;
         url=urlImagen;
         this.titulo=titulo;
+        cantidadMeGusta=0;
+        comentarios = new ArrayList<String>();
+        momentoPublicacion = LocalDateTime.now();
     }
 
     public void meGusta(){
@@ -42,8 +45,7 @@ public class EntradaFoto
         return momentoPublicacion;
     }
 
-    public String toString()
-    {
+    public String toString(){
         String cadenaADevolver = null;
         cadenaADevolver = "Autor: " + usuario + ". Titulo: " + titulo + " " + urlImagen + " " + cantidadMeGusta + " Me Gusta.";
         if (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) <= 59) {

@@ -17,34 +17,39 @@ public class EntradaTexto
     public EntradaTexto(String autor, String texto){
         usuario=autor;
         mensaje=texto;
+        comentarios = new ArrayList<String>();
+        cantidadMeGusta=0;
+        momentoPublicacion = LocalDateTime.now();
     }
+
     public void meGusta(){
         cantidadMeGusta++;
     }
+
     public void addComentario(String texto){
         comentarios.add(texto);
     }
+
     public String getMensaje(){
         return mensaje;
     }
+
     public LocalDateTime getMomentoPublicacion(){
         return momentoPublicacion;
     }
-  public String toString()
-    {
+
+    public String toString(){
         String cadenaADevolver = null;
-        
-        cadenaADevolver = "Autor: " + usuario + ". Mensaje: " + mensaje + " " +
-                    cantidadMeGusta + " Me Gusta.";
+        cadenaADevolver = "Autor: " + usuario + ". Mensaje: " + mensaje + " " +cantidadMeGusta + " Me Gusta.";
         if (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) <= 59) {
             cadenaADevolver = cadenaADevolver + " Tiempo transcurrido: " + 
-                    momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS)
-                            + " segundos.";
+            momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS)
+            + " segundos.";
         }
         else {
             cadenaADevolver = cadenaADevolver + " Tiempo transcurrido: " + 
-                momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.MINUTES)+ " minutos, " + 
-                (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) - 60)+ " segundos.";
+            momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.MINUTES)+ " minutos, " + 
+            (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS) - 60)+ " segundos.";
         }
         if (comentarios.isEmpty()) {
             cadenaADevolver = cadenaADevolver + " - No contiene comentarios";
