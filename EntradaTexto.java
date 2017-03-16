@@ -7,45 +7,35 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaTexto
+public class EntradaTexto extends Entrada
 {
-    private String usuario;
+
     private String mensaje;
-    private LocalDateTime momentoPublicacion;
-    private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
+
+
     public EntradaTexto(String autor, String texto){
-        usuario=autor;
+        super(autor);
+        
         mensaje=texto;
-        comentarios = new ArrayList<String>();
-        cantidadMeGusta=0;
-        momentoPublicacion = LocalDateTime.now();
     }
 
-    public void meGusta(){
-        cantidadMeGusta++;
-    }
+  
 
-    public void addComentario(String texto){
-        comentarios.add(texto);
-    }
+
 
     public String getMensaje(){
         return mensaje;
     }
 
-    public LocalDateTime getMomentoPublicacion(){
-        return momentoPublicacion;
-    }
 
     
     public String toString(){
         String cadenaDevolver="";
-        cadenaDevolver+= "Usuario: " + usuario +"\n";
+        cadenaDevolver+= "Usuario: " + getUsuario() +"\n";
         cadenaDevolver+= mensaje +"\n";
-        cadenaDevolver+= cantidadMeGusta +" me gusta.";
+        cadenaDevolver+=  getMeGusta() +" me gusta.";
         
-        long segundosDeLaCreacion= momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long segundosDeLaCreacion= getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
         long minutosDePublicaion= segundosDeLaCreacion/60;
         long segundosDePublicacion=segundosDeLaCreacion % 60;
         
@@ -55,11 +45,11 @@ public class EntradaTexto
         }
         cadenaDevolver+= segundosDePublicacion +" segundos.\n";
         
-        if (comentarios.isEmpty()) {
+        if (getComentarios().isEmpty()) {
             cadenaDevolver = cadenaDevolver + " - No contiene comentarios";
         }
         else{
-            for(String comentario: comentarios){
+            for(String comentario: getComentarios()){
                 cadenaDevolver+= comentario +"\n";
             }
         }

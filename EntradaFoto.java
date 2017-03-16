@@ -7,30 +7,16 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaFoto
+public class EntradaFoto extends Entrada
 {
-    private String usuario;
+
     private String urlImagen;
     private String titulo;
-    private LocalDateTime momentoPublicacion;
-    private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
 
     public EntradaFoto(String autor, String url, String titulo){
-        usuario= autor;
+        super(autor);
         url=urlImagen;
         this.titulo=titulo;
-        cantidadMeGusta=0;
-        comentarios = new ArrayList<String>();
-        momentoPublicacion = LocalDateTime.now();
-    }
-
-    public void meGusta(){
-        cantidadMeGusta++;
-    }
-
-    public void addComentario(String texto){
-        comentarios.add(texto);
     }
 
     public String getUrlImagen(){
@@ -41,20 +27,16 @@ public class EntradaFoto
         return titulo;
     }
 
-    public LocalDateTime getMomentoPublicacion(){
-        return momentoPublicacion;
-    }
-
       public String toString()
     {
         String cadenaADevolver = "";
         
-        cadenaADevolver += "Usuario: " + usuario + "\n";
+        cadenaADevolver += "Usuario: " +  getUsuario() + "\n";
         cadenaADevolver += titulo + "\n";
         cadenaADevolver += urlImagen + "\n";
-        cadenaADevolver += cantidadMeGusta + " me gusta";
+        cadenaADevolver += getMeGusta() + " me gusta";
         
-        long segundosQueHanPasadoDesdeCreacion = momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long segundosQueHanPasadoDesdeCreacion = getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
         long minutosQueHanPasadoDesdeCreacion = segundosQueHanPasadoDesdeCreacion / 60;
         long segundosResiduales = segundosQueHanPasadoDesdeCreacion % 60;
         
@@ -64,13 +46,13 @@ public class EntradaFoto
         }
         cadenaADevolver += segundosResiduales + " segundos.\n";       
         
-        if (comentarios.isEmpty()) {
+        if (getComentarios().isEmpty()) {
             cadenaADevolver += "La entrada no tiene comentarios.";
         }
         else {
             //Se recopilan los comentarios
             cadenaADevolver += "Comentarios:\n";
-            for (String comentario : comentarios) {
+            for (String comentario : getComentarios()) {
                 cadenaADevolver += comentario + "\n";
             }
         }   
