@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaFoto extends Entrada
+public class EntradaFoto extends EntraConComentarios
 {
 
     private String urlImagen;
@@ -15,7 +15,7 @@ public class EntradaFoto extends Entrada
 
     public EntradaFoto(String autor, String url, String titulo){
         super(autor);
-        url=urlImagen;
+        urlImagen=url;
         this.titulo=titulo;
     }
 
@@ -58,5 +58,10 @@ public class EntradaFoto extends Entrada
         }   
         
         return cadenaADevolver;
+    }
+
+      public void mostrar()
+    {
+        System.out.println(this);
     }
 }

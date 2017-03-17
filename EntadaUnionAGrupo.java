@@ -2,28 +2,23 @@ import java.util.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 /**
- * Write a description of class EntradaTexto here.
+ * Write a description of class Grupo here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntradaTexto extends EntraConComentarios
+public class EntadaUnionAGrupo extends Entrada
 {
-    private String mensaje;
-
-    public EntradaTexto(String autor, String texto){
+    private String grupo;
+    public EntadaUnionAGrupo(String autor, String nombreGrupo){
         super(autor);
-        mensaje=texto;
-    }
-
-    public String getMensaje(){
-        return mensaje;
+        grupo=nombreGrupo;
     }
 
     public String toString(){
         String cadenaDevolver="";
         cadenaDevolver+= "Usuario: " + getUsuario() +"\n";
-        cadenaDevolver+= mensaje +"\n";
+        cadenaDevolver+= "Se a unido a " + grupo +"\n";
         cadenaDevolver+=  getMeGusta() +" me gusta.";
 
         long segundosDeLaCreacion= getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
@@ -36,19 +31,8 @@ public class EntradaTexto extends EntraConComentarios
         }
         cadenaDevolver+= segundosDePublicacion +" segundos.\n";
 
-        if (getComentarios().isEmpty()) {
-            cadenaDevolver = cadenaDevolver + " - No contiene comentarios"+"\n";
-        }
-        else{
-            for(String comentario: getComentarios()){
-                cadenaDevolver+= comentario +"\n";
-            }
-        }
-
-
-        return cadenaDevolver;
+        return cadenaDevolver; 
     }
-    
       public void mostrar()
     {
         System.out.println(this);

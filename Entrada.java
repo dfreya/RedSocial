@@ -13,10 +13,10 @@ public class Entrada
     private String usuario;
     private LocalDateTime momentoPublicacion;
     private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
+    
     public Entrada(String autor){
         usuario=autor;
-        comentarios = new ArrayList<String>();
+        
         cantidadMeGusta=0;
         momentoPublicacion = LocalDateTime.now();
     }
@@ -24,9 +24,7 @@ public class Entrada
     public void meGusta(){
          cantidadMeGusta++;
     }    
-    public void addComentario(String texto){
-        comentarios.add(texto);
-    }
+   
     
         public String getUsuario(){
         return usuario;
@@ -37,10 +35,11 @@ public class Entrada
     public LocalDateTime getMomentoPublicacion(){
         return momentoPublicacion;
     }
-    public ArrayList<String> getComentarios(){
-        return comentarios;
-    }
+   
     public String toString(){
         return "";
+    }
+    public void mostrar(){
+      
     }
 }
