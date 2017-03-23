@@ -21,30 +21,9 @@ public class EntradaTexto extends EntraConComentarios
     }
 
     public String toString(){
-        String cadenaDevolver="";
-        cadenaDevolver+= "Usuario: " + getUsuario() +"\n";
+        String cadenaDevolver=super.toString();
+
         cadenaDevolver+= mensaje +"\n";
-        cadenaDevolver+=  getMeGusta() +" me gusta.";
-
-        long segundosDeLaCreacion= getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
-        long minutosDePublicaion= segundosDeLaCreacion/60;
-        long segundosDePublicacion=segundosDeLaCreacion % 60;
-
-        cadenaDevolver+= "Hace ";
-        if(minutosDePublicaion>0){
-            cadenaDevolver+= minutosDePublicaion+ " minutos ";
-        }
-        cadenaDevolver+= segundosDePublicacion +" segundos.\n";
-
-        if (getComentarios().isEmpty()) {
-            cadenaDevolver = cadenaDevolver + " - No contiene comentarios"+"\n";
-        }
-        else{
-            for(String comentario: getComentarios()){
-                cadenaDevolver+= comentario +"\n";
-            }
-        }
-
 
         return cadenaDevolver;
     }
@@ -52,5 +31,16 @@ public class EntradaTexto extends EntraConComentarios
       public void mostrar()
     {
         System.out.println(this);
+    }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada(){
+        int cantidadDeDatos=5;
+
+        return cantidadDeDatos;
+    }
+    public void mostrarDatosExclusivos (){
+        String cadena="";
+        cadena=getMensaje();
+        System.out.println(cadena);
     }
 }

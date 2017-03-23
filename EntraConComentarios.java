@@ -12,14 +12,27 @@ public class EntraConComentarios extends Entrada
         super(autor);
         comentarios = new ArrayList<String>();
     }
-     public void addComentario(String texto){
+
+    public void addComentario(String texto){
         comentarios.add(texto);
     }
-     public ArrayList<String> getComentarios(){
+
+    public ArrayList<String> getComentarios(){
         return comentarios;
     }
+
     public String toString(){
-        return "";
+        String cadenaDevolver= super.toString();
+        cadenaDevolver+= comentarios +"\n";
+        if (getComentarios().isEmpty()) {
+            cadenaDevolver = cadenaDevolver + " - No contiene comentarios"+"\n";
+        }
+        else{
+            for(String comentario: getComentarios()){
+                cadenaDevolver+= comentario +"\n";
+            }
+        }
+        return cadenaDevolver;
     }
-    
+
 }
