@@ -49,7 +49,8 @@ public class Muro
             String usuario=entradaActual.getUsuario();
             if(usuario.equals(autor)|| autor==null){
                 String entradaBuscada=entradaActual.getClass().getSimpleName();
-                if(tipoEntrada.equals(entradaBuscada) || tipoEntrada==null){
+
+                if(entradaBuscada.equals(tipoEntrada) || tipoEntrada==null){
                     if(entradaActual instanceof EntradaTexto ){
                         ((EntradaTexto)entradaActual).mostrarDatosExclusivos();
                     }
@@ -60,13 +61,9 @@ public class Muro
                         ((EntadaUnionAGrupo)entradaActual).mostrarDatosExclusivos();
                     }
                 }
-                else{
-                    System.out.println("Este Usuario no a publicado este tipo de Entrada");
-                }
+                
             }
-            else{
-                System.out.println("Este Usuario no ha publicadonada");
-            }
+            
         }
     }
 }

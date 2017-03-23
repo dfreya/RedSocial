@@ -49,8 +49,8 @@ public class EntradaFoto extends EntraConComentarios
     }
         public void mostrarDatosExclusivos (){
         String cadena="";
-        cadena=getUrlImagen();
-        cadena= " "+getTituloImagen();
+        cadena="Url: "+getUrlImagen();
+        cadena= " "+"Titulo: "+getTituloImagen();
         System.out.println(cadena);
     }
 }

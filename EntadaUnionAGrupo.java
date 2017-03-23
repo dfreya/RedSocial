@@ -38,7 +38,7 @@ public class EntadaUnionAGrupo extends Entrada
     
         public void mostrarDatosExclusivos (){
         String cadena="";
-        cadena=getGrupo();
+        cadena="Se unio a: "+getGrupo();
         System.out.println(cadena);
     }
 }

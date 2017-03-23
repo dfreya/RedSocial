@@ -40,7 +40,7 @@ public class EntradaTexto extends EntraConComentarios
     }
     public void mostrarDatosExclusivos (){
         String cadena="";
-        cadena=getMensaje();
+        cadena= "Mensaje: "+getMensaje();
         System.out.println(cadena);
     }
 }
