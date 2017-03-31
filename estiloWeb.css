@@ -1,0 +1,26 @@
+*{
+	 background-color: #7FFFD4;
+	 text-align: center;
+}
+
+.parrafo p  {
+	background-color: green;
+	 margin-top: 25px;   
+	 margin-left: 500px;  
+	width: 620px;
+}
+
+img{
+	
+	width: 620px; height: 315px;
+	
+}
+big{
+	background-color: green;
+}
+.usu {
+		background-color: green;
+	
+		 margin-left: 500px;  
+	
+}

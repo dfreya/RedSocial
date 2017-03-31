@@ -38,7 +38,7 @@ public class PruevaInteractiva
     public void setUp()
     {
         entradaT1 = new EntradaTexto("Borja", "hola clase");
-        entradaF1 = new EntradaFoto("Borja", "htt//borja", "Foto Clase Borja");
+        entradaF1 = new EntradaFoto("Borja", "http://imagenesyfotos.net/wp-content/uploads/2015/06/imagen-aerea-islas-marietas-620x315.jpg", "Foto Clase Borja");
         entadaUn1 = new EntadaUnionAGrupo("Borja", "Cena Semana Santa");
         entradaT2 = new EntradaTexto("Azahara", "holis a todos");
         entradaF2 = new EntradaFoto("Azahara", "htt//azahara", "Aki esperando con borja");

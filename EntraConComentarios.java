@@ -23,13 +23,25 @@ public class EntraConComentarios extends Entrada
 
     public String toString(){
         String cadenaDevolver= super.toString();
-        cadenaDevolver+= comentarios +"\n";
         if (getComentarios().isEmpty()) {
-            cadenaDevolver = cadenaDevolver + " - No contiene comentarios"+"\n";
+            cadenaDevolver =cadenaDevolver + " - No contiene comentarios"+"\n";
         }
         else{
             for(String comentario: getComentarios()){
                 cadenaDevolver+= comentario +"\n";
+            }
+        }
+        return cadenaDevolver;
+    }
+    
+    public String toStringWeb(){
+        String cadenaDevolver= super.toStringWeb();
+        if (getComentarios().isEmpty()) {
+            cadenaDevolver =cadenaDevolver + " - No contiene comentarios"+"</br>"+"\n";
+        }
+        else{
+            for(String comentario: getComentarios()){
+                cadenaDevolver+= comentario +"</br>"+"\n";
             }
         }
         return cadenaDevolver;

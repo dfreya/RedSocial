@@ -23,7 +23,7 @@ public class EntradaTexto extends EntraConComentarios
     public String toString(){
         String cadenaDevolver=super.toString();
 
-        cadenaDevolver+= mensaje +"\n";
+        cadenaDevolver+=mensaje +"\n";
 
         return cadenaDevolver;
     }
@@ -38,9 +38,18 @@ public class EntradaTexto extends EntraConComentarios
 
         return cantidadDeDatos;
     }
+    
     public void mostrarDatosExclusivos (){
         String cadena="";
         cadena= "Mensaje: "+getMensaje();
         System.out.println(cadena);
+    }
+    
+        public String toStringWeb(){
+        String cadenaDevolver=super.toStringWeb();
+
+        cadenaDevolver+= mensaje +"</p>"+"</div>"+"\n";
+
+        return cadenaDevolver;
     }
 }

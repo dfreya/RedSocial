@@ -14,7 +14,6 @@ public class Entrada
     private LocalDateTime momentoPublicacion;
     private int cantidadMeGusta;
 
-
     /**
      * Constructor for objects of class Entrada
      */
@@ -24,22 +23,20 @@ public class Entrada
         momentoPublicacion = LocalDateTime.now();
         cantidadMeGusta = 0;     
     }
-    
+
     public void meGusta()
     {
         cantidadMeGusta++;
     }    
-    
-    
+
     public LocalDateTime getMomentoPublicacion()
     {
         return momentoPublicacion;
     }
-        
+
     public String toString(){
         String cadenaDevolver="";
-        cadenaDevolver+= "Usuario: " + getUsuario() +"\n";
-        
+        cadenaDevolver+="Usuario: " + getUsuario() +"\n";
 
         long segundosDeLaCreacion= getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
         long minutosDePublicaion= segundosDeLaCreacion/60;
@@ -49,12 +46,12 @@ public class Entrada
         if(minutosDePublicaion>0){
             cadenaDevolver+= minutosDePublicaion+ " minutos ";
         }
-        cadenaDevolver+= segundosDePublicacion +" segundos.\n";
-        cadenaDevolver+=  getMeGusta() +" me gusta.";
+        cadenaDevolver+= segundosDePublicacion +" segundos."+"\n";
+        cadenaDevolver+=  getMeGusta() +" me gusta."+"\n";
 
         return cadenaDevolver;
     }
-    
+
     public String getUsuario()
     {
         return usuario;
@@ -64,13 +61,28 @@ public class Entrada
     {
         return cantidadMeGusta;
     }
-    
-     public int getCantidadDeDatosAsociadosALaEntrada(){
-         return 0;
+
+    public int getCantidadDeDatosAsociadosALaEntrada(){
+        return 0;
     }
 
-    
+    public String toStringWeb(){
+        String cadenaDevolver="";
+        cadenaDevolver+="<div class=\"parrafo\"><p>"+"<b class=\"usu\">"+ "Usuario: "+"</b>" + getUsuario()+"</br>" +"\n";
+
+        long segundosDeLaCreacion= getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS);
+        long minutosDePublicaion= segundosDeLaCreacion/60;
+        long segundosDePublicacion=segundosDeLaCreacion % 60;
+
+        cadenaDevolver+= "Hace ";
+        if(minutosDePublicaion>0){
+            cadenaDevolver+= minutosDePublicaion+ " minutos ";
+        }
+        cadenaDevolver+= segundosDePublicacion +" segundos."+"</br>"+"\n";
+        cadenaDevolver+=  getMeGusta() +" me gusta."+"</br>"+"\n";
+
+        return cadenaDevolver;
+    }
 
 }
-
 

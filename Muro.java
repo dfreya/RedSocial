@@ -1,5 +1,9 @@
-
+import java.nio.file.*;
+import java.io.BufferedWriter;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.File;
 /**
  * Write a description of class Muro here.
  * 
@@ -25,10 +29,24 @@ public class Muro
         if (!entrada.isEmpty()){
             for (Entrada entradaActual : entrada)
             {
-                cadenaADevolver += entradaActual + "\n";
+                cadenaADevolver +=entradaActual + "\n";
             }
         }
 
+        return cadenaADevolver;
+    }
+    
+        public String toStringWeb()
+    {
+        String cadenaADevolver = "";
+        if (!entrada.isEmpty()){
+            for (Entrada entradaActual : entrada)
+            {
+                cadenaADevolver +=entradaActual.toStringWeb() + "\n";
+            }
+            
+        }
+        System.out.println(cadenaADevolver);
         return cadenaADevolver;
     }
 
@@ -61,9 +79,29 @@ public class Muro
                         ((EntadaUnionAGrupo)entradaActual).mostrarDatosExclusivos();
                     }
                 }
-                
+
             }
-            
+
         }
     }
+
+    public void mostrarMuroEnNavegador(){
+        Path archivoWeb = Paths.get("muroEnWeb.html");
+        try  
+        {
+            BufferedWriter archivo = Files.newBufferedWriter(archivoWeb);
+            archivo.write("<html><head><title>My Sitico</title><link href=\"estiloWeb.css\" rel=\"stylesheet\" type=\"text/css\"></head><body>"+"\n");
+            archivo.write("<h1>MY Sitico</h1>"+"\n");
+            archivo.write(toStringWeb());  
+            archivo.write("</body></html>");
+
+            archivo.close();
+        }
+        catch (IOException excepcion) {
+            // Mostramos por pantalla la excepción que se ha producido
+            System.out.println(excepcion.toString());
+        }
+    }
+
+
 }

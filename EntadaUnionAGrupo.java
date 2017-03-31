@@ -41,4 +41,11 @@ public class EntadaUnionAGrupo extends Entrada
         cadena="Se unio a: "+getGrupo();
         System.out.println(cadena);
     }
+    
+        public String toStringWeb(){
+        String cadenaDevolver=super.toStringWeb();
+        cadenaDevolver+= "Se a unido a: " + grupo +"</p>"+"</div>"+"\n";
+
+        return cadenaDevolver; 
+    }
 }
