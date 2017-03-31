@@ -46,7 +46,6 @@ public class Muro
             }
             
         }
-        System.out.println(cadenaADevolver);
         return cadenaADevolver;
     }
 
@@ -92,7 +91,7 @@ public class Muro
             BufferedWriter archivo = Files.newBufferedWriter(archivoWeb);
             archivo.write("<html><head><title>My Sitico</title><link href=\"estiloWeb.css\" rel=\"stylesheet\" type=\"text/css\"></head><body>"+"\n");
             archivo.write("<h1>MY Sitico</h1>"+"\n");
-            archivo.write(toStringWeb());  
+            archivo.write(this.toStringWeb());  
             archivo.write("</body></html>");
 
             archivo.close();
@@ -101,7 +100,19 @@ public class Muro
             // Mostramos por pantalla la excepción que se ha producido
             System.out.println(excepcion.toString());
         }
+        
+        try 
+        {
+            String cmd = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome " + "muroEnWeb.html" ;
+            Runtime.getRuntime().exec(cmd); 
+        } 
+        catch (IOException ioe) 
+        {
+            System.out.println (ioe);
+        }
     }
 
+
+    
 
 }
