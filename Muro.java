@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
+import java.net.URL;
 /**
  * Write a description of class Muro here.
  * 
@@ -75,7 +76,7 @@ public class Muro
                         ((EntradaFoto)entradaActual).mostrarDatosExclusivos();
                     }
                     else{
-                        ((EntadaUnionAGrupo)entradaActual).mostrarDatosExclusivos();
+                        ((EntradaUnionAGrupo)entradaActual).mostrarDatosExclusivos();
                     }
                 }
 
@@ -110,6 +111,63 @@ public class Muro
         {
             System.out.println (ioe);
         }
+    }
+
+    public void mostrarMuroEnNavegador(String usuario){
+        entrada.clear();
+
+        try 
+        {
+
+            URL url = new URL("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec?user=" + usuario);
+            Scanner sc = new Scanner(url.openStream());
+            while (sc.hasNextLine()) {
+                String linea[]= sc.nextLine().split(";");
+                if(linea[0].equals("EntradaTexto")){// 6 elementos,0 el tipo, 1 el usuario, 2 me gustas, 3 la hora fecha, 4 el msm, 5 los comentarios
+                    EntradaTexto entradaActual= new EntradaTexto(linea[1], linea[4]);
+                    for(int cont=0; cont<=Integer.parseInt(linea[2]);cont++){
+                        entradaActual.meGusta();
+                    }
+                    entradaActual.timepoDePublicacion(linea[3]);
+
+                    String lineaComentarios[]=linea[5].split("%");
+                    for(int cont=0; cont<lineaComentarios.length;cont++){
+                        entradaActual.addComentario(lineaComentarios[cont]);
+                    }
+                    entrada.add(entradaActual);
+                }
+                else if(linea[0].equals("EntradaFoto")){//7 elementos, 0 el tipo, 1 el usuario, 2 me gusta, 3 la hora y fecha, 4 al url, 5 titulo, 6 los comentarios
+                     EntradaFoto entradaActual= new EntradaFoto(linea[1], linea[4], linea[5]);
+                    for(int cont=0; cont<=Integer.parseInt(linea[2]);cont++){
+                        entradaActual.meGusta();
+                    }
+                    entradaActual.timepoDePublicacion(linea[3]);
+
+                    String lineaComentarios[]=linea[6].split("%");
+                    for(int cont=0; cont<lineaComentarios.length;cont++){
+                        entradaActual.addComentario(lineaComentarios[cont]);
+                    }
+                    entrada.add(entradaActual);
+                }
+                else if(linea[0].equals("EntradaUnionAGrupo")){// , 0 el tipo , 1 el usuario, 2 me gusta, 3 fecha hora, 4 el nombro grupo
+                    EntradaUnionAGrupo entradaActual= new EntradaUnionAGrupo(linea[1], linea[4]);
+                    for(int cont=0; cont<=Integer.parseInt(linea[2]);cont++){
+                        entradaActual.meGusta();
+                    }
+                    entradaActual.timepoDePublicacion(linea[3]);
+
+                    entrada.add(entradaActual);
+                }
+            }
+            sc.close();
+        }
+        catch (Exception e) 
+        {
+            System.out.println (e);
+
+        }
+
+        mostrarMuroEnNavegador();
     }
 
 

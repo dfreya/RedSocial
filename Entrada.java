@@ -74,16 +74,41 @@ public abstract class Entrada
         long minutosDePublicaion= segundosDeLaCreacion/60;
         long segundosDePublicacion=segundosDeLaCreacion % 60;
 
+       String tiempoDevolver="";
         cadenaDevolver+= "Hace ";
+
         if(minutosDePublicaion>0){
-            cadenaDevolver+= minutosDePublicaion+ " minutos ";
+            tiempoDevolver=minutosDePublicaion+ " minutos "+segundosDePublicacion +" segundos.";
+            if(minutosDePublicaion>60){
+                long horasDePublicacion= minutosDePublicaion/60;
+                minutosDePublicaion= minutosDePublicaion%60;
+
+                if(horasDePublicacion>0){
+                    tiempoDevolver= horasDePublicacion+" horas.";
+                    if (horasDePublicacion>24){
+                        long diasDePublicacion=horasDePublicacion/24;
+                        horasDePublicacion=horasDePublicacion%24;
+                        if(diasDePublicacion>0){
+                            tiempoDevolver= diasDePublicacion+" dias.";
+                        }
+                    }
+                }
+            }
         }
-        cadenaDevolver+= segundosDePublicacion +" segundos."+"</br>"+"\n";
+        cadenaDevolver+= tiempoDevolver +"</br>"+"\n";
         cadenaDevolver+=  getMeGusta() +" me gusta."+"</br>"+"\n";
 
         return cadenaDevolver;
     }
-    
+
+    public void timepoDePublicacion(String fehaHora){
+        String horaFecha[]=fehaHora.split("-");
+        String fecha[]=horaFecha[0].split("/");
+        String hora[]=horaFecha[1].split(":");
+
+        momentoPublicacion = LocalDateTime.of(Integer.parseInt(fecha[2]),Integer.parseInt(fecha[1]),Integer.parseInt(fecha[0]), Integer.parseInt(hora[0]), Integer.parseInt(hora[1]));
+
+    }
  
  
 
