@@ -7,10 +7,10 @@ import java.time.temporal.ChronoUnit;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EntadaUnionAGrupo extends Entrada
+public class EntradaUnionAGrupo extends Entrada
 {
     private String grupo;
-    public EntadaUnionAGrupo(String autor, String nombreGrupo){
+    public EntradaUnionAGrupo(String autor, String nombreGrupo){
         super(autor);
         grupo=nombreGrupo;
     }
